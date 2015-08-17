@@ -6,7 +6,7 @@
 // creates a new trie.
 struct trie* trie_create()
 {
-    return malloc(sizeof(struct trie));
+    return calloc(1,sizeof(struct trie));
 }
 
 // returns pointer to thing at key
