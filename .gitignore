@@ -1,3 +1,6 @@
 *.sublime*
 
 *.fuse*
+
+trie_run
+
