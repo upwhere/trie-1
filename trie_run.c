@@ -26,13 +26,13 @@ int main(int argc, char* argv[])
 	printf("lookup got %d\n", *trie_value);
 
 	inserted = trie_insert(test_trie, "ab", b);
-	printf("inserted %d at %p\n", *a, inserted);
+	printf("inserted %d at %p\n", *b, inserted);
 
 	trie_value = trie_lookup(test_trie, "ab");
 	printf("lookup got %d\n", *trie_value);
 
 	inserted = trie_insert(test_trie, "ccz", c);
-	printf("inserted %d at %p\n", *a, inserted);
+	printf("inserted %d at %p\n", *c, inserted);
 
 	trie_value = trie_lookup(test_trie, "ccz");
 	printf("lookup got %d\n", *trie_value);
