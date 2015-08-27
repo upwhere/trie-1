@@ -58,6 +58,7 @@ void* trie_insert(struct trie* data, char* key, void* val)
                 // else it will promote to a branch
             case trienode_leaf:
                 current_node->type++;
+            default:;
         }
 
         // if next_node doesn't actually exist, create it
@@ -151,10 +152,10 @@ void trie_remove(struct trie* data, char* key)
         // try to find the correct child node
         struct trie* next_node = current_node->children[*key];
 
-        // if next_node doesn't actually exist, return NULL
+        // if next_node doesn't actually exist, there's nothing to remove
         if (!next_node) 
         {
-            return NULL;
+            return;
         }
 
         // set current node to the correct child node
