@@ -10,7 +10,7 @@ struct trie* trie_create()
 }
 
 // returns pointer to thing at key
-void* trie_traverse(struct trie* data, char* key)
+void* trie_traverse(struct trie* data, char const* key)
 {
     struct trie* current_node = data;
 
@@ -18,7 +18,7 @@ void* trie_traverse(struct trie* data, char* key)
     while (*key != 0)
     {
         // try to find the correct child node
-        struct trie* next_node = current_node->children[*key];
+        struct trie* next_node = current_node->children[*key + 0u];
 
         // if next_node doesn't actually exist, return NULL
         if (!next_node) 
@@ -37,7 +37,7 @@ void* trie_traverse(struct trie* data, char* key)
 }
 
 // inserts val at key
-void* trie_insert(struct trie* data, char* key, void* val)
+void* trie_insert(struct trie* data, char const* key, void* val)
 {
     struct trie* current_node = data;
 
@@ -45,7 +45,7 @@ void* trie_insert(struct trie* data, char* key, void* val)
     while (*key != 0)
     {
         // try to find the correct child node
-        struct trie* next_node = current_node->children[*key];
+        struct trie* next_node = current_node->children[*key + 0u];
 
         switch (current_node->type)
         {
@@ -64,8 +64,8 @@ void* trie_insert(struct trie* data, char* key, void* val)
         // if next_node doesn't actually exist, create it
         if (!next_node) 
         {
-            current_node->children[*key] = trie_create();
-            next_node = current_node->children[*key];
+            current_node->children[*key + 0u] = trie_create();
+            next_node = current_node->children[*key + 0u];
             if (trienode_twig == current_node->type)
             {
                 // children[0] is never used; we'll hijack it as a fast-forward key
@@ -87,8 +87,8 @@ void* trie_insert(struct trie* data, char* key, void* val)
 }
 
 // returns void pointer of thing at key
-void* trie_lookup(struct trie* data, char* key)
-{   
+void* trie_lookup(struct trie* data, char const* key)
+{
     struct trie* current_node = trie_traverse(data, key);
 
     if (!current_node)
@@ -100,7 +100,7 @@ void* trie_lookup(struct trie* data, char* key)
 }
 
 // If there is only one key that maches the given `char* prefix`, returns its value. If there are several, returns the given `void* ambiguous`, if there are none, returns null.
-void* trie_lookup_prefix(struct trie* data, char* prefix, void* ambiguous)
+void* trie_lookup_prefix(struct trie* data, char const* prefix, void* ambiguous)
 {
     struct trie* current_node = trie_traverse(data, prefix);
 
@@ -142,7 +142,7 @@ void* trie_lookup_prefix(struct trie* data, char* prefix, void* ambiguous)
 }
 
 // removes thing at key
-void trie_remove(struct trie* data, char* key)
+void trie_remove(struct trie* data, char const* key)
 {
     struct trie* current_node = data;
 
@@ -150,10 +150,10 @@ void trie_remove(struct trie* data, char* key)
     while (*key != 0)
     {
         // try to find the correct child node
-        struct trie* next_node = current_node->children[*key];
+        struct trie* next_node = current_node->children[*key + 0u];
 
         // if next_node doesn't actually exist, there's nothing to remove
-        if (!next_node) 
+        if (!next_node)
         {
             return;
         }

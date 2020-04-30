@@ -16,16 +16,16 @@ struct trie {
 struct trie* trie_create();
 
 // inserts val at key
-void* trie_insert(struct trie* data, char* key, void* val);
+void* trie_insert(struct trie* data, char const* key, void* val);
 
 // returns thing at key
-void* trie_lookup(struct trie* data, char* key);
+void* trie_lookup(struct trie* data, char const* key);
 
 // returns thing at key matching prefix, if there are multiple matches, returns the ambiguous pointer
-void* trie_lookup_prefix(struct trie* data, char* prefix, void* ambiguous);
+void* trie_lookup_prefix(struct trie* data, char const* prefix, void* ambiguous);
 
 // removes thing at key
-void trie_remove(struct trie* data, char* key);
+void trie_remove(struct trie* data, char const* key);
 
 // destroys trie at pointer
 void trie_destroy(struct trie* data);
