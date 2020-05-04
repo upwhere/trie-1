@@ -184,3 +184,17 @@ void trie_destroy(struct trie* data)
     free(data);
     return;
 }
+
+void trie_foreach(struct trie* data, void (*callback)(void*))
+{
+	int a;
+	for (a = 1; a < 256; a++)
+	{
+		if (data->children[a])
+		{
+			trie_foreach (data->children[a], callback);
+		}
+	}
+	callback (data->val);
+	return;
+}

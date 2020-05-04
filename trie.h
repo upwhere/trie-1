@@ -29,3 +29,6 @@ void trie_remove(struct trie* data, char const* key);
 
 // destroys trie at pointer
 void trie_destroy(struct trie* data);
+
+// calls callback function for each value stored in the trie
+void trie_foreach(struct trie* data, void (*callback)(void*));
