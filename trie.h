@@ -32,3 +32,6 @@ void trie_destroy(struct trie* data);
 
 // calls callback function for each value stored in the trie
 void trie_foreach(struct trie* data, void (*callback)(void*));
+
+// calls callback function for each value stored in the trie
+void trie_foreach_with_data(struct trie* data, void (*callback)(void*, void*), void*);

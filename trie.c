@@ -198,3 +198,16 @@ void trie_foreach(struct trie* data, void (*callback)(void*))
 	callback (data->val);
 	return;
 }
+
+void trie_foreach_with_data(struct trie* data, void (*callback)(void*, void*), void*userdata)
+{
+	int a;
+	for (a = 1; a < 256; a++)
+	{
+		if (data->children[a])
+		{
+			trie_foreach_with_data (data->children[a], callback, userdata);
+		}
+	}
+	callback (data->val, userdata);
+}
